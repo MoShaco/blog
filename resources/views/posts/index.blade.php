@@ -26,7 +26,7 @@
                 <td>{{$post->created_at}}</td>
                 <td>
                     <a href="{{route('posts.show', $post->id)}}" class="btn btn-primary"> View </a>
-                    <a href="" class="btn btn-secondary"> Edit </a>
+                    <a href="{{route('posts.edit', $post->id)}}" class="btn btn-secondary"> Edit </a>
                     <form action="" method="" class="d-inline">
                         @csrf
                         <button type="button" class="btn btn-danger">Delete</button>
