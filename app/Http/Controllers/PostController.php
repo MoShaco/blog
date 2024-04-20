@@ -40,4 +40,10 @@ class PostController extends Controller
         // Redirect the user to the homepage
         return to_route('posts.index');
     }
+
+    // Show a spefiic post
+    public function show ($id) {
+        $post = Post::findOrFail($id);
+        return view('posts.show', ['post' => $post]);
+    }
 }

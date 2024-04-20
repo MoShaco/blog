@@ -25,7 +25,7 @@
                 <td>{{$post->user->name}}</td>
                 <td>{{$post->created_at}}</td>
                 <td>
-                    <a href="" class="btn btn-primary"> View </a>
+                    <a href="{{route('posts.show', $post->id)}}" class="btn btn-primary"> View </a>
                     <a href="" class="btn btn-secondary"> Edit </a>
                     <form action="" method="" class="d-inline">
                         @csrf
