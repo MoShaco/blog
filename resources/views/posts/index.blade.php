@@ -12,19 +12,18 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Title</th>
-                <th scope="col">Description</th>
                 <th scope="col">Post Creator</th>
                 <th scope="col">Created at</th>
                 <th scope="col" colspan="3">Actions</th>
             </tr>
             </thead>
             <tbody>
+            @foreach($posts as $post)
             <tr>
-                <th scope="row">1</th>
-                <td>Gaza</td>
-                <td>From OCT 7th gaza under attack of Isralie occupation</td>
-                <td>Mohammed Shaco </td>
-                <td>2024-4-18</td>
+                <th scope="row">{{$post->id}}</th>
+                <td>{{$post->title}}</td>
+                <td>{{$post->user->name}}</td>
+                <td>{{$post->created_at}}</td>
                 <td>
                     <a href="" class="btn btn-primary"> View </a>
                     <a href="" class="btn btn-secondary"> Edit </a>
@@ -34,6 +33,7 @@
                     </form>
                 </td>
             </tr>
+            @endforeach
             </tbody>
         <section>
     </table>
