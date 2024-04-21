@@ -19,7 +19,7 @@
         <div class="card-body">
             <h5 class="card-title">Name: {{$post->user->name}}</h5>
             <p class="card-text">Email: {{$post->user->email}}</p>
-            <p class="card-text">Created at: {{$post->user->created_at ? $post->created_at : null}}</p>
+            <p class="card-text">Created at: {{$post->user->created_at ? $post->created_at : 'Not found'}}</p>
         </div>
     </div>
 @endsection
