@@ -67,4 +67,10 @@ class PostController extends Controller
         // View that post after editing
         return to_route('posts.show', $post->id);
     }
+
+    // Delete a post
+    public function destroy (Post $post) {
+        $post->delete();
+        return to_route('posts.index');
+    }
 }
