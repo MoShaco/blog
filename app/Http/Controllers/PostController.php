@@ -21,20 +21,17 @@ class PostController extends Controller
     // Save the new post
     public function store(Request $request) {
         // Validate the data
-        $request->validate([
+        $validatedPostData = $request->validate([
             'title' => ['required', 'string', 'max:20'],
             'description' => ['required', 'string', 'min:10', 'max:250'],
             'post_creator' => ['required', 'exists:users,id'],
         ]);
-        $title = $request->title;
-        $description = $request->description;
-        $postCreator = $request->post_creator;
 
         // Add the post detials to the database
         Post::create ([
-            'title' => $title,
-            'description' => $description,
-            'user_id' => $postCreator,
+            'title' => trim($validatedPostData['title']),
+            'description' => trim($validatedPostData['description']),
+            'user_id' => $validatedPostData['post_creator']
         ]);
 
         // Redirect the user to the homepage
@@ -42,14 +39,32 @@ class PostController extends Controller
     }
 
     // Show a spefiic post
-    public function show ($id) {
-        $post = Post::findOrFail($id);
+    public function show (Post $post) {
         return view('posts.show', ['post' => $post]);
     }
 
-    // Edit a post
-    public function edit($id) {
-        $post = Post::findOrFail($id);
+    // Enable editing a post
+    public function edit(Post $post) {
         return view('posts.edit', ['post' => $post, 'users' => User::all()]);
+    }
+
+    // Update the post
+    public function update(Request $request, Post $post) {
+        // Validate the data
+        $validatedPostData = $request->validate([
+            'title' => ['required', 'string', 'max:20'],
+            'description' => ['required', 'string', 'min:10', 'max:250'],
+            'post_creator' => ['required', 'exists:users,id'],
+        ]);        
+
+        // Update the post
+        $post->update([
+            'title' => trim($validatedPostData['title']),
+            'description' => trim($validatedPostData['description']),
+            'user_id' => $validatedPostData['post_creator'],
+        ]);
+
+        // View that post after editing
+        return to_route('posts.show', $post->id);
     }
 }
