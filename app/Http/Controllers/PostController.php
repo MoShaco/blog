@@ -55,8 +55,8 @@ class PostController extends Controller
             'title' => ['required', 'string', 'max:20'],
             'description' => ['required', 'string', 'min:10', 'max:250'],
             'post_creator' => ['required', 'exists:users,id'],
-        ]);        
-
+        ]); 
+               
         // Update the post
         $post->update([
             'title' => trim($validatedPostData['title']),
