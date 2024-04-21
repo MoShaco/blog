@@ -23,7 +23,7 @@ class PostController extends Controller
         // Validate the data
         $validatedPostData = $request->validate([
             'title' => ['required', 'string', 'max:20'],
-            'description' => ['required', 'string', 'min:10', 'max:250'],
+            'description' => ['required', 'string', 'max:250'],
             'post_creator' => ['required', 'exists:users,id'],
         ]);
 
@@ -53,7 +53,7 @@ class PostController extends Controller
         // Validate the data
         $validatedPostData = $request->validate([
             'title' => ['required', 'string', 'max:20'],
-            'description' => ['required', 'string', 'min:10', 'max:250'],
+            'description' => ['required', 'string', 'max:250'],
             'post_creator' => ['required', 'exists:users,id'],
         ]);        
 
