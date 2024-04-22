@@ -23,7 +23,7 @@
                 <th scope="row">{{$post->id}}</th>
                 <td>{{$post->title}}</td>
                 <td>{{$post->user->name}}</td>
-                <td>{{$post->created_at}}</td>
+                <td>{{$post->created_at->format('Y-m-d H:m')}}</td>
                 <td>
                     <a href="{{ route('posts.show', $post->id)}}" class="btn btn-primary"> View </a>
                     <a href="{{ route('posts.edit', $post->id) }}" class="btn btn-secondary"> Edit </a>
