@@ -21,7 +21,7 @@ class PostController extends Controller
     // Save the new post
     public function store(Request $request) {
         // Validate the data
-        $validatedPostData = $request->validate([
+        $postInformation = $request->validate([
             'title' => ['required', 'string', 'max:20'],
             'description' => ['required', 'string', 'max:250'],
             'post_creator' => ['required', 'exists:users,id'],
@@ -29,9 +29,9 @@ class PostController extends Controller
 
         // Add the post detials to the database
         Post::create ([
-            'title' => trim($validatedPostData['title']),
-            'description' => trim($validatedPostData['description']),
-            'user_id' => $validatedPostData['post_creator']
+            'title' => trim($postInformation['title']),
+            'description' => trim($postInformation['description']),
+            'user_id' => $postInformation['post_creator']
         ]);
 
         // Redirect the user to the homepage
@@ -51,7 +51,7 @@ class PostController extends Controller
     // Update the post
     public function update(Request $request, Post $post) {
         // Validate the data
-        $validatedPostData = $request->validate([
+        $postInformation = $request->validate([
             'title' => ['required', 'string', 'max:20'],
             'description' => ['required', 'string', 'max:250'],
             'post_creator' => ['required', 'exists:users,id'],
@@ -59,9 +59,9 @@ class PostController extends Controller
                
         // Update the post
         $post->update([
-            'title' => trim($validatedPostData['title']),
-            'description' => trim($validatedPostData['description']),
-            'user_id' => $validatedPostData['post_creator'],
+            'title' => trim($postInformation['title']),
+            'description' => trim($postInformation['description']),
+            'user_id' => $postInformation['post_creator'],
         ]);
 
         // View that post after editing
