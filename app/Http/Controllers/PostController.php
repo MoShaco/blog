@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 use App\Models\User;
 use App\Models\Post;
 
@@ -19,18 +20,14 @@ class PostController extends Controller
     }
 
     // Save the new post
-    public function store(Request $request) {
+    public function store(PostRequest $request) {
         // Validate the data
-        $postInformation = $request->validate([
-            'title' => ['required', 'string', 'max:20'],
-            'description' => ['required', 'string', 'max:250'],
-            'post_creator' => ['required', 'exists:users,id'],
-        ]);
+        $postInformation = $request->validated();
 
-        // Add the post detials to the database
+        // Add the post information to the database after sanitizing it
         Post::create ([
-            'title' => trim($postInformation['title']),
-            'description' => trim($postInformation['description']),
+            'title' => strip_tags($postInformation['title']),
+            'description' => strip_tags($postInformation['description']),
             'user_id' => $postInformation['post_creator']
         ]);
 
@@ -49,18 +46,14 @@ class PostController extends Controller
     }
 
     // Update the post
-    public function update(Request $request, Post $post) {
+    public function update(PostRequest $request, Post $post) {
         // Validate the data
-        $postInformation = $request->validate([
-            'title' => ['required', 'string', 'max:20'],
-            'description' => ['required', 'string', 'max:250'],
-            'post_creator' => ['required', 'exists:users,id'],
-        ]); 
+        $postInformation = $request->validated();
                
-        // Update the post
+        // Update the post information to the database after sanitizing it
         $post->update([
-            'title' => trim($postInformation['title']),
-            'description' => trim($postInformation['description']),
+            'title' => strip_tags($postInformation['title']),
+            'description' => strip_tags($postInformation['description']),
             'user_id' => $postInformation['post_creator'],
         ]);
 
