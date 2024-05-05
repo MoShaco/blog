@@ -18,7 +18,7 @@ class RegisterUserController extends Controller
         // Validate the data
         $userInformation = $reqeust->validate([
             'name' => ['required', 'string'],
-            'email' => ['required', 'email', 'max:254', 'unique: User,email'],
+            'email' => ['required', 'email', 'unique:App\Models\User,email', 'max:254'],
             'password' => ['required', 'min:8' , 'confirmed']
         ]);
 
