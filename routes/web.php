@@ -6,6 +6,11 @@ use App\Http\Controllers\PostController;
 Route::get('/', function () {
     return view('welcome');
 });
+// Authentication
+Route::get('/register', [RegisterUserController::class, 'create'])->name('auth.create');
+Route::post('/register', [RegisterUserController::class, 'store'])->name('auth.store');
+
+// CRUD {POST}
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
