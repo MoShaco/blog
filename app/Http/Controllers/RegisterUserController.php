@@ -29,6 +29,6 @@ class RegisterUserController extends Controller
         auth::login($user);
 
         // redirct the user
-        return redirect('/dashboard');
+        return to_route('posts.index');
     }
 }
