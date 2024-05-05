@@ -2,14 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\RegisterUserController;
 
 Route::get('/', function () {
     return view('welcome');
 });
 // Authentication
-Route::get('/register', [RegisterUserController::class, 'create'])->name('register.create');
-Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
+Route::get('/register', [RegisterUserController::class, 'create'])->name('auth.create');
+Route::post('/register', [RegisterUserController::class, 'store'])->name('auth.store');
 
 // CRUD {POST}
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
