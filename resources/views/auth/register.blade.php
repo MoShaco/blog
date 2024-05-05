@@ -8,7 +8,7 @@
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
+                <li>{{ $error }}</li>l
             @endforeach
         </ul>
     </div>
