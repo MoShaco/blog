@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterUserController;
 use App\Http\Controllers\SessionController;
+use App\Policies\PostPolicy;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,7 +26,7 @@ Route::middleware(['auth'])->group(function() {
     Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
     Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
 
-    Route::group(['middleware' => 'can:edit-post,post'], function () {
+    Route::group(['middleware' => 'can:edit,post'], function () {
         Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
         Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
         Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');

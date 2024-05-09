@@ -23,9 +23,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Gate for check if the user can edit, delete the post
-        Gate::define('edit-post', function (User $user, Post $post) {
-            return $post->user->is($user);
-        });
+        
     }
 }
