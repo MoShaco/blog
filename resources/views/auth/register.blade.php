@@ -35,4 +35,7 @@
             <button type="submit" class="btn btn-primary">Register</button>
         </form>
     </div>
+    <div class="mt-3">
+        <p> Already registerd ? <a href="{{ route('session.create') }}" class="text-decoration-none"> click here to login </a> </p>
+    </div>
 @endsection

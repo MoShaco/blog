@@ -26,4 +26,7 @@
             <button type="submit" class="btn btn-primary">Login</button>
         </form>
     </div>
+    <div class="mt-3">
+        <a href="{{ route('register.create') }}" class="text-decoration-none"> I don't have an account </a>
+    </div>
 @endsection
