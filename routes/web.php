@@ -14,15 +14,22 @@ Route::get('/register', [RegisterUserController::class, 'create'])->name('regist
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
 
 // Login
-Route::get('/login', [SessionController::class, 'create'])->name('session.create');
+Route::get('/login', [SessionController::class, 'create'])->name('login');
 Route::post('/login', [SessionController::class, 'store'])->name('session.store');
 Route::post('/logout', [SessionController::class, 'destroy'])->name('session.destroy');
 
 // CRUD {POST}
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');
-Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+
+Route::middleware(['auth'])->group(function() {
+    Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
+
+    Route::group(['middleware' => 'can:edit-post,post'], function () {
+        Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
+        Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
+        Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');
+    });
+});
+
 Route::get('/posts/{post}', [PostController::class, 'show'])->name('posts.show');
-Route::post('/posts', [PostController::class, 'store'])->name('posts.store');
-Route::get('/posts/{post}/edit', [PostController::class, 'edit'])->name('posts.edit');
-Route::put('/posts/{post}', [PostController::class, 'update'])->name('posts.update');
-Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.destroy');

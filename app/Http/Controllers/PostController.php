@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests\PostRequest;
 use App\Models\User;
 use App\Models\Post;
+use Illuminate\Support\Facades\Gate;
 
 class PostController extends Controller
 {
@@ -42,7 +43,8 @@ class PostController extends Controller
 
     // Enable editing a post
     public function edit(Post $post) {
-        return view('posts.edit', ['post' => $post, 'users' => User::all()]);
+
+        return view('posts.edit', ['post' => $post]);
     }
 
     // Update the post
