@@ -3,13 +3,20 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\RegisterUserController;
+use App\Http\Controllers\SessionController;
 
 Route::get('/', function () {
     return view('welcome');
 });
-// Authentication
+
+// Register
 Route::get('/register', [RegisterUserController::class, 'create'])->name('register.create');
 Route::post('/register', [RegisterUserController::class, 'store'])->name('register.store');
+
+// Login
+Route::get('/login', [SessionController::class, 'create'])->name('session.create');
+Route::post('/login', [SessionController::class, 'store'])->name('session.store');
+Route::post('/logout', [SessionController::class, 'destroy'])->name('session.destroy');
 
 // CRUD {POST}
 Route::get('/posts', [PostController::class, 'index'])->name('posts.index');

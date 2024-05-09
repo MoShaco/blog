@@ -15,9 +15,17 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            @auth
             <li class="nav-item">
               <a class="nav-link active" aria-current="page" href="{{route('posts.index')}}">All Posts</a>
             </li>
+            <li class="nav-item">
+              <form action="{{route('session.destroy')}}" method="post">
+                @csrf
+                <input type="submit" class="btn btn-danger" value="Logout">
+              </form>
+            </li>
+            @endauth
           </ul>
         </div>
       </div>
