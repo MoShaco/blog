@@ -27,14 +27,8 @@
             <label for="description" class="form-label" >Description</label>
             <textarea name="description" class="form-control" id="description" rows="3"> {{$post->description}} </textarea>
         </div>
-        <div class="form-floating">
-            <select class="form-select" name="post_creator">
-                <option  disabled>Select the post creator</option>
-                @foreach($users as $user)
-                <option value="{{$user->id}}">{{$user->name}}</option>
-                @endforeach
-            </select>
-            <label>Post Creator</label>
+        <div>
+            <input type="hidden" name="post_creator" value="{{ auth()->check() ? auth()->user()->id : null }}" >
         </div>
         <button type="submit" class="btn btn-primary mt-3">Update</button>
     </form>

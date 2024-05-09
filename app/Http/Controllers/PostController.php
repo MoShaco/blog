@@ -49,7 +49,7 @@ class PostController extends Controller
     public function update(PostRequest $request, Post $post) {
         // Validate the data
         $postInformation = $request->validated();
-               
+    
         // Update the post information to the database after sanitizing it
         $post->update([
             'title' => strip_tags($postInformation['title']),
