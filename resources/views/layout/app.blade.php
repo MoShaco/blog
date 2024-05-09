@@ -24,7 +24,7 @@
         <li class="nav-item">
             <form action="{{ route('session.destroy') }}" method="post">
                 @csrf
-                <input type="submit" class="btn btn-outline-danger" value="Logout">
+                <input type="submit" class="btn btn-outline-secondary" value="Logout">
             </form>
         </li>
         @endauth

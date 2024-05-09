@@ -36,6 +36,6 @@
         </form>
     </div>
     <div class="mt-3">
-        <p> Already registerd ? <a href="{{ route('session.create') }}" class="text-decoration-none"> click here to login </a> </p>
+        <p> Already registerd ? <a href="{{ route('login') }}" class="text-decoration-none"> click here to login </a> </p>
     </div>
 @endsection
